@@ -3,7 +3,7 @@ import './App.css';
 import CardList from "./components/card-list/card-list.component";
 import SearchBox from "./components/search-box/search-box.component";
 
-class App extends Component<{}, { monsters: { name: string, id: string }[], searchField: string }> {
+class App extends Component<{}, { monsters: { name: string, id: string, email: string,  }[], searchField: string }> {
   constructor() {
     // @ts-ignore
     super();
@@ -17,7 +17,7 @@ class App extends Component<{}, { monsters: { name: string, id: string }[], sear
 
   componentDidMount() {
     console.log('componentDidMount')
-    /*fetch('https://jsonplaceholder.typicode.com/users')
+    fetch('https://jsonplaceholder.typicode.com/users')
       .then(response => response.json())
       .then(users => {
         this.setState(
@@ -25,7 +25,7 @@ class App extends Component<{}, { monsters: { name: string, id: string }[], sear
             return {monsters: users}
           },
         )
-      })*/
+      })
   }
 
   onSearchChange = (event: { target: { value: string; }; }) => {
@@ -44,7 +44,7 @@ class App extends Component<{}, { monsters: { name: string, id: string }[], sear
 
     return (
       <div className='App'>
-        <SearchBox onChangrHandler={onSearchChange} className={'search-box'} placeholder={'search monsters'}/>
+        <SearchBox onChangeHandler={onSearchChange} className={'monsters-search-box'} placeholder={'search monsters'}/>
         <CardList items={[...monsters.filter(m => m.name.toLowerCase().includes(searchField))]} />
       </div>
     );

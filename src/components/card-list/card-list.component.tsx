@@ -1,13 +1,20 @@
 import React, {Component} from 'react';
+import './card-list.styles.css'
+import CardContainer from "../card-container/card-container.component";
 
-class CardList extends Component<{ items: {id: string, name: string}[] }, any> {
+class CardList extends Component<{ items: { id: string, name: string, email: string }[] }, any> {
 
   render() {
-    const { items } = this.props;
+    const {items} = this.props;
 
-    return <div> {
-      items.map(item => <div><h3 key={item.id}>{item.name}</h3></div>)
-    }</div>;
+    return <div className='card-list'>
+      {
+        items.map(item => {
+          const {id, name, email} = item
+          return <CardContainer id={id} name={name} email={email} />
+        })
+      }
+    </div>;
   }
 }
 

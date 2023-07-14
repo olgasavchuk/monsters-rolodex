@@ -1,9 +1,29 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import CardList from "./components/card-list/card-list.component";
 import SearchBox from "./components/search-box/search-box.component";
 
-class App extends Component<{}, { monsters: { name: string, id: string, email: string,  }[], searchField: string }> {
+const App = () => {
+  console.log('render')
+
+  const [searchField, setSearchField] = useState('')
+  console.log(searchField)
+
+  const onSearchChange = (event: { target: { value: string; }; }) => {
+    const searchFieldString = event.target.value.toLowerCase()
+    setSearchField(searchFieldString)
+  }
+
+  return (
+    <div className='App'>
+      <h1 className={'page-title'}>Monsters</h1>
+      <SearchBox onChangeHandler={onSearchChange} className={'monsters-search-box'} placeholder={'search monsters'}/>
+      {/*<CardList items={[...monsters.filter(m => m.name.toLowerCase().includes(searchField))]} />*/}
+    </div>
+  )
+}
+
+/*class App extends Component<{}, { monsters: { name: string, id: string, email: string,  }[], searchField: string }> {
   constructor() {
     // @ts-ignore
     super();
@@ -49,6 +69,6 @@ class App extends Component<{}, { monsters: { name: string, id: string, email: s
       </div>
     );
   }
-}
+}*/
 
 export default App;
